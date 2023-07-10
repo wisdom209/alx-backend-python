@@ -1,4 +1,4 @@
-#!/usr/bin/python3 env
+#!/usr/bin/env python3
 """Executing multiple coroutines"""
 from typing import List
 task_wait_random = __import__('3-tasks').task_wait_random
