@@ -5,7 +5,7 @@ import random
 from typing import Iterator
 
 
-async def async_generator() -> Iterator[int]:
+async def async_generator() -> Iterator[float]:
     """generator coroutine"""
     for _ in range(10):
         await asyncio.sleep(1)
