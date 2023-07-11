@@ -2,11 +2,11 @@
 """async generator module"""
 import asyncio
 import random
-from typing import Generator
+from typing import Iterator
 
 
-async def async_generator() -> Generator[float, None, None]:
+async def async_generator() -> Iterator[int]:
     """generator coroutine"""
     for _ in range(10):
         await asyncio.sleep(1)
-        yield random.uniform(1, 9)
+        yield random.uniform(0, 10)
