@@ -74,3 +74,9 @@ def memoize(fn: Callable) -> Callable:
 
     return property(memoized)
 
+""" print(access_nested_map(nested_map={"a": 1}, path=("a",)))
+print(access_nested_map(nested_map={"a": {"b": 2}}, path=("a",)))
+print(access_nested_map(nested_map={"a": {"b": 2}}, path=("a","b")))
+print(access_nested_map({"a": {"b": {"c": 1}}}, path=("a","b", "c"))) """
+""" print(access_nested_map(nested_map={}, path=("a",)))
+print(access_nested_map({"a": 1}, path=("a","b"))) """
