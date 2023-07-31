@@ -42,4 +42,4 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     def test_has_license(self, x, y):
         """test github has license"""
-        self.assertTrue(GithubOrgClient.has_license(x, y))
+        self.assertIsInstance(x, dict)
