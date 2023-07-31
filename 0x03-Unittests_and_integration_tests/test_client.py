@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """TestClient test module"""
 import unittest
+import requests
 from unittest import mock
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -44,3 +46,25 @@ class TestGithubOrgClient(unittest.TestCase):
         """test github has license"""
         result = GithubOrgClient.has_license(x, y)
         self.assertEqual(result, expected_result)
+
+
+@parameterized_class([
+    {"name": "orgs_payload"},
+    {"name": "repos_payload"},
+    {"name": "expected_repos"},
+    {"name": "apache2_repos"},
+])
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """Integration test"""
+    get_patcher = mock.patch('request.get')
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        mock_method = cls.get_patcher.start()
+        mock_method.json.return_value = TEST_PAYLOAD
+        return super().setUpClass()
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls.get_patcher.stop()
+        return super().tearDown()
