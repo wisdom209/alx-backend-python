@@ -59,6 +59,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
+        """set up class function"""
         def getPayload(url):
             return mock.Mock({cls.name: cls.value})
         cls.get_patcher = mock.patch("requests.get", side_effect=getPayload)
@@ -74,4 +75,5 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls) -> None:
+        """tear down class module"""
         cls.get_patcher.stop()
