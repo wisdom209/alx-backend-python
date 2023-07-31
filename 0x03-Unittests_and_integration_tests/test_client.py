@@ -49,22 +49,21 @@ class TestGithubOrgClient(unittest.TestCase):
 
 
 @parameterized_class([
-    {"name": "orgs_payload"},
-    {"name": "repos_payload"},
-    {"name": "expected_repos"},
-    {"name": "apache2_repos"},
+    {"name": 'org_payload', "value": TEST_PAYLOAD[0][0]},
+    {"name": 'repos_payload', "value": TEST_PAYLOAD[0][1]},
+    {"name": 'expected_repos', "value": TEST_PAYLOAD[0][2]},
+    {"name": 'apache2_repos', "value": TEST_PAYLOAD[0][3]},
 ])
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """Integration test"""
-    get_patcher = mock.patch('request.get')
 
     @classmethod
     def setUpClass(cls) -> None:
-        mock_method = cls.get_patcher.start()
-        mock_method.json.return_value = TEST_PAYLOAD
-        return super().setUpClass()
+        def getPayload(url):
+            return mock.Mock({cls.name: cls.value})
+        cls.get_patcher = mock.patch("requests.get", side_effect=getPayload)
+        cls.get_patcher.start()
 
     @classmethod
     def tearDownClass(cls) -> None:
         cls.get_patcher.stop()
-        return super().tearDown()
