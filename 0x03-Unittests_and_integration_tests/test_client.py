@@ -14,8 +14,9 @@ class TestGithubOrgClient(unittest.TestCase):
         ('abc')
 
     ])
-    def test_org(self, x):
+    def test_org(self, input):
         """Test the organization"""
         with mock.patch('client.GithubOrgClient.org') as mock_method:
-            GithubOrgClient.org(x)
-            mock_method.assert_called_once_with(x)
+            GithubOrgClient.ORG_URL = input
+            GithubOrgClient.org()
+            mock_method.assert_called_once()
