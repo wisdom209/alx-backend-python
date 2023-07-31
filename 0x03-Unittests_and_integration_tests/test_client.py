@@ -23,7 +23,8 @@ class TestGithubOrgClient(unittest.TestCase):
 
     def test_public_repos_url(self):
         """Test public repos url"""
-        with mock.patch('client.GithubOrgClient._public_repos_url') as mock_method:
+        with mock.patch('client.GithubOrgClient._public_repos_url')\
+                as mock_method:
             mock_method.return_value = 'github.com'
             self.assertEqual(GithubOrgClient._public_repos_url(), 'github.com')
 
@@ -34,4 +35,3 @@ class TestGithubOrgClient(unittest.TestCase):
             result = GithubOrgClient.public_repos()
             self.assertEqual(result, 'github.com')
             mock_method.assert_called_once()
-            
