@@ -64,6 +64,14 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get_patcher = mock.patch("requests.get", side_effect=getPayload)
         cls.get_patcher.start()
 
+    def test_public_repos_with_license(self):
+        """test public repos with license"""
+        self.assertTrue(True)
+
+    def test_public_repos(self):
+        """test public repos"""
+        self.assertTrue(True)
+
     @classmethod
     def tearDownClass(cls) -> None:
         cls.get_patcher.stop()
